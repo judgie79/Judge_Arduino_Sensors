@@ -1,5 +1,5 @@
-#ifndef MOTORSENSOR_H
-#define MOTORSENSOR_H
+#ifndef TriggerSensor_H
+#define TriggerSensor_H
 
 #include "Arduino.h"
 
@@ -7,13 +7,13 @@
 
 enum class SensorType : uint8_t {
   Trigger = 0,
-  Distance = 1
+  Measure = 1
 };
 // static const char* SensorTypeNames[] = { "Trigger", "Distance" };
 
 enum class SensorTriggerType: uint8_t {
-  ForceStop = 0,
-  Position = 1
+  Force = 0,
+  Info = 1
 };
 // static const char* SensorTriggerTypeNames[] = { "ForceStop", "Position" };
 
@@ -23,20 +23,17 @@ enum class SensorTriggerDirection : uint8_t {
   Backward = 2,
   Both = 3
 };
-// static const char* SensorTriggerDirectionNames[] = { "None", "Forward", "Backward", "Both" };
 
-// static const char* TriggerdNames[] = { "off", "on" };
 
-class MotorSensor {
+
+class TriggerSensor {
 public:
-  MotorSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection sensorTriggerDirection);
-  ~MotorSensor();
+  TriggerSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType);
+  ~TriggerSensor();
   uint16_t getId();
   String getName();
   SensorType getType();
   SensorTriggerType getTriggerType();
-  SensorTriggerDirection getTriggerDirection();
-  bool virtual haltOnTrigger();
   void virtual read() = 0;
   bool virtual isTriggered() = 0;
   bool virtual isStillTriggered() = 0;
@@ -48,7 +45,6 @@ protected:
   String name;
   SensorType type;
   SensorTriggerType triggerType;
-  SensorTriggerDirection triggerDirection;
 };
 
 #endif

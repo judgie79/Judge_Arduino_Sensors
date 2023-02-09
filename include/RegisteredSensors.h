@@ -3,11 +3,13 @@
 
 #include "Arduino.h"
 
-#include "MotorSensor.h"
+#include "TriggerSensor.h"
 
+
+template <class T>
 struct RegisteredSensors
 {
-    MotorSensor **sensors;
+    T **sensors;
     uint16_t sensorCount;
 };
 

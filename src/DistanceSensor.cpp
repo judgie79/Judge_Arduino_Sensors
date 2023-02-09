@@ -1,16 +1,15 @@
 #include "Arduino.h"
 #include "DistanceSensor.h"
-#include <NewPing.h>
 
-DistanceSensor::DistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, DistanceDevice* device)
-	: MotorSensor(id, name, SensorType::Distance, triggerType, triggerDirection) {
+DistanceSensor::DistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, DistanceDevice* device)
+	: TriggerSensor(id, name, SensorType::Measure, triggerType) {
 	this->device = device;
 	this->triggerDistance = triggerDistance;
 }
 
 DistanceSensor::~DistanceSensor()
 {
-	free( device );
+
 }
 
 void DistanceSensor::begin() {

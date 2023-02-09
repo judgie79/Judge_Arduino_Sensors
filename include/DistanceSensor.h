@@ -4,12 +4,12 @@
 #include "Arduino.h"
 #include <DebugOut.h>
 
-#include "MotorSensor.h"
+#include "TriggerSensor.h"
 #include "DistanceDevice.h"
 
-class DistanceSensor : public MotorSensor {
+class DistanceSensor : public TriggerSensor {
 public:
-  DistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, DistanceDevice *device);
+  DistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, DistanceDevice *device);
   ~DistanceSensor();
   void begin();
   void read();

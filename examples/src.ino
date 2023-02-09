@@ -23,7 +23,7 @@ ButtonSensor backEndSensor(0, "START", SensorType::Trigger, SensorTriggerType::F
 ButtonSensor frontEndSensor(3, "END", SensorType::Trigger, SensorTriggerType::ForceStop, SensorTriggerDirection::Forward, frontEndSensorPin, INPUT_PULLUP);
 DistanceSensor pos1Sensor(1, "POS1", 10, SensorTriggerType::Position, SensorTriggerDirection::Both, &sonar );
 
-MotorSensor **defaultSensors = new MotorSensor*[3]{ &backEndSensor, &pos1Sensor, &frontEndSensor };
+TriggerSensor **defaultSensors = new TriggerSensor*[3]{ &backEndSensor, &pos1Sensor, &frontEndSensor };
 
 SensorManager sManager(defaultSensors, 3, &sonar);
 
