@@ -1,14 +1,14 @@
 #include "DistanceDevice.h"
 
-DistanceDevice::DistanceDevice(uint16_t maxLength){
+DistanceDevice::DistanceDevice(uint8_t maxLength){
     this->maxLength = maxLength;
 }
 
-uint16_t DistanceDevice::getDistance()
+uint8_t DistanceDevice::getDistance()
 {
     return distance;
 }
-uint16_t DistanceDevice::getLastDistance()
+uint8_t DistanceDevice::getLastDistance()
 {
     return lastDistance;
 }

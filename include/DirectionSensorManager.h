@@ -15,21 +15,21 @@
 
 class DirectionSensorManager {
 public:
-  DirectionSensorManager(DirectionTriggerSensor **sensors, uint16_t sensorCount, DistanceDevice *distanceDevice);
+  DirectionSensorManager(DirectionTriggerSensor **sensors, uint8_t sensorCount, DistanceDevice *distanceDevice);
   void begin();
   void end();
   void read();
-  uint16_t currentDistance();
+  uint8_t currentDistance();
 
   DirectionTriggerSensor *lastTriggeredSensor();
   int16_t lastTriggeredIndex();
-  uint16_t getSensorCount();
+  uint8_t getSensorCount();
   RegisteredSensors<DirectionTriggerSensor> getSensors();
   RegisteredSensors<DirectionTriggerSensor> getSensors(SensorTriggerType triggerType);
-  RegisteredSensors<DirectionTriggerSensor> getSensors(SensorTriggerType triggerType, SensorTriggerDirection *directions, uint16_t directionsCount);
+  RegisteredSensors<DirectionTriggerSensor> getSensors(SensorTriggerType triggerType, SensorTriggerDirection *directions, uint8_t directionsCount);
 
   void addSensor(DirectionTriggerSensor *newSensor);
-  void addDistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection);
+  void addDistanceSensor(uint8_t id, uint8_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection);
   void removeSensor(DirectionTriggerSensor *newSensor);
   void removeSensors(SensorType type);
   void removeSensors(SensorTriggerType triggerType);
@@ -43,11 +43,11 @@ private:
 
   DistanceDevice *distanceDevice;
   DirectionTriggerSensor **sensors;
-  uint16_t sensorCount;
+  uint8_t sensorCount;
   DirectionTriggerSensor *_lastSensor = nullptr;
 
-  uint16_t *steps;
-  uint16_t stepCount = 0;
+  uint8_t *steps;
+  uint8_t stepCount = 0;
 };
 
 #endif

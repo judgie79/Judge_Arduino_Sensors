@@ -9,13 +9,11 @@ enum class SensorType : uint8_t {
   Trigger = 0,
   Measure = 1
 };
-// static const char* SensorTypeNames[] = { "Trigger", "Distance" };
 
 enum class SensorTriggerType: uint8_t {
   Force = 0,
   Info = 1
 };
-// static const char* SensorTriggerTypeNames[] = { "ForceStop", "Position" };
 
 enum class SensorTriggerDirection : uint8_t {
   None = 0,
@@ -24,14 +22,11 @@ enum class SensorTriggerDirection : uint8_t {
   Both = 3
 };
 
-
-
 class TriggerSensor {
 public:
-  TriggerSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType);
+  TriggerSensor(uint8_t id, SensorType type, SensorTriggerType triggerType);
   ~TriggerSensor();
-  uint16_t getId();
-  String getName();
+  uint8_t getId();
   SensorType getType();
   SensorTriggerType getTriggerType();
   void virtual read() = 0;
@@ -41,8 +36,7 @@ public:
 
   String virtual toString();
 protected:
-  uint16_t id;
-  String name;
+  uint8_t id;
   SensorType type;
   SensorTriggerType triggerType;
 };

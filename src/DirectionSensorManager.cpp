@@ -2,7 +2,7 @@
 #include "DirectionSensorManager.h"
 
 
-DirectionSensorManager::DirectionSensorManager(DirectionTriggerSensor **sensors, uint16_t sensorCount, DistanceDevice *distanceDevice) {
+DirectionSensorManager::DirectionSensorManager(DirectionTriggerSensor **sensors, uint8_t sensorCount, DistanceDevice *distanceDevice) {
   this->sensors = sensors;
   this->sensorCount = sensorCount;
   this->distanceDevice = distanceDevice;
@@ -13,7 +13,7 @@ void DirectionSensorManager::begin() {
   distanceDevice->begin();
 }
 
-uint16_t DirectionSensorManager::currentDistance()
+uint8_t DirectionSensorManager::currentDistance()
 {
   return distanceDevice->getDistance();
 }
@@ -31,16 +31,16 @@ void DirectionSensorManager::addSensor(DirectionTriggerSensor *newSensor)
   sensorCount++;
 }
 
-void DirectionSensorManager::addDistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection)
+void DirectionSensorManager::addDistanceSensor(uint8_t id, uint8_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection)
 {
-  DirectionDistanceSensor *newSensor = new DirectionDistanceSensor(id, name, triggerDistance, triggerType, triggerDirection, this->distanceDevice);
+  DirectionDistanceSensor *newSensor = new DirectionDistanceSensor(id, triggerDistance, triggerType, triggerDirection, this->distanceDevice);
   addSensor(newSensor);
 }
 
   void DirectionSensorManager::removeSensor(DirectionTriggerSensor *sensorToRemove)
   {
     DirectionTriggerSensor **newArray = new DirectionTriggerSensor*[sensorCount - 1];
-    uint16_t skipCounter = 0;
+    uint8_t skipCounter = 0;
     for (size_t i = 0; i < sensorCount; i++)
     {
       if (sensors[i] != sensorToRemove)
@@ -57,7 +57,7 @@ void DirectionSensorManager::addDistanceSensor(uint16_t id, String name, uint16_
   void DirectionSensorManager::removeSensors(SensorType type)
   {
     
-    uint16_t skipCounter = 0;
+    uint8_t skipCounter = 0;
     for (size_t i = 0; i < sensorCount; i++)
     {
       if (sensors[i]->getType() == type)
@@ -83,7 +83,7 @@ void DirectionSensorManager::addDistanceSensor(uint16_t id, String name, uint16_
 
 void DirectionSensorManager::removeSensors(SensorTriggerType triggerType)
   {
-     uint16_t skipCounter = 0;
+     uint8_t skipCounter = 0;
     for (size_t i = 0; i < sensorCount; i++)
     {
       if (sensors[i]->getTriggerType() == triggerType)
@@ -161,7 +161,7 @@ int16_t DirectionSensorManager::lastTriggeredIndex() {
   return returnValue;
 }
 
-uint16_t DirectionSensorManager::getSensorCount()
+uint8_t DirectionSensorManager::getSensorCount()
 {
   return sensorCount;
 }
@@ -179,7 +179,7 @@ RegisteredSensors<DirectionTriggerSensor> DirectionSensorManager::getSensors(Sen
 }
 
 
-RegisteredSensors<DirectionTriggerSensor> DirectionSensorManager::getSensors(SensorTriggerType triggerType, SensorTriggerDirection *directions, uint16_t directionsCount)
+RegisteredSensors<DirectionTriggerSensor> DirectionSensorManager::getSensors(SensorTriggerType triggerType, SensorTriggerDirection *directions, uint8_t directionsCount)
 {
   uint16_t foundSensors = 0;
   for (size_t i = 0; i < sensorCount; i++)

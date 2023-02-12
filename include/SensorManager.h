@@ -2,12 +2,6 @@
 #define SENSORMANAGER_H
 
 #include "Arduino.h"
-// You can control the scope depending on your own flag
-#ifdef SENSORMANAGER_ENABLE_DEBUGLOG
-#include <DebugLogEnable.h>
-#else
-#include <DebugLogDisable.h>
-#endif  // SENSORMANAGER_ENABLE_DEBUGLOG
 #include "TriggerSensor.h"
 #include "RegisteredSensors.h"
 #include "DistanceDevice.h"
@@ -15,15 +9,15 @@
 
 class SensorManager {
 public:
-  SensorManager(TriggerSensor **sensors, uint16_t sensorCount, DistanceDevice *distanceDevice);
+  SensorManager(TriggerSensor **sensors, uint8_t sensorCount, DistanceDevice *distanceDevice);
   void begin();
   void end();
   void read();
-  uint16_t currentDistance();
+  uint8_t currentDistance();
 
   TriggerSensor *lastTriggeredSensor();
   int16_t lastTriggeredIndex();
-  uint16_t getSensorCount();
+  uint8_t getSensorCount();
   RegisteredSensors<TriggerSensor> getSensors();
   RegisteredSensors<TriggerSensor> getSensors(SensorTriggerType triggerType);
 
@@ -31,9 +25,6 @@ public:
   void removeSensor(TriggerSensor *newSensor);
   void removeSensors(SensorType type);
   void removeSensors(SensorTriggerType triggerType);
-
-  void printSensors();
-
 private:
 
   void onSensorTriggerOnce(TriggerSensor *sensor);
@@ -41,11 +32,11 @@ private:
 
   DistanceDevice *distanceDevice;
   TriggerSensor **sensors;
-  uint16_t sensorCount;
+  uint8_t sensorCount;
   TriggerSensor *_lastSensor = nullptr;
 
-  uint16_t *steps;
-  uint16_t stepCount = 0;
+  uint8_t *steps;
+  uint8_t stepCount = 0;
 };
 
 #endif

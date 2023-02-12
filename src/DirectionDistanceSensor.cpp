@@ -1,7 +1,7 @@
 #include "DirectionDistanceSensor.h"
 
-DirectionDistanceSensor::DirectionDistanceSensor(uint16_t id, String name,  uint16_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, DistanceDevice* device)
-  : DirectionTriggerSensor(id, name, SensorType::Measure, triggerType, triggerDirection), DistanceSensor(id, name, triggerDistance, triggerType, device) {
+DirectionDistanceSensor::DirectionDistanceSensor(uint8_t id, uint8_t triggerDistance, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, DistanceDevice* device)
+  : DistanceSensor(id, triggerDistance, triggerType, device), DirectionTriggerSensor(id, SensorType::Measure, triggerType, triggerDirection) {
 }
 
 DirectionDistanceSensor::~DirectionDistanceSensor()
@@ -17,16 +17,16 @@ void DirectionDistanceSensor::setTriggerDistance(uint8_t distance)
 	DistanceSensor::setTriggerDistance(distance);
 }
 
-uint16_t DirectionDistanceSensor::getTriggerDistance()
+uint8_t DirectionDistanceSensor::getTriggerDistance()
 {
 	return DistanceSensor::getTriggerDistance();;
 }
 
-uint16_t DirectionDistanceSensor::getDistance() {
+uint8_t DirectionDistanceSensor::getDistance() {
 	return DistanceSensor::getDistance();
 }
 
-uint16_t DirectionDistanceSensor::getLastDistance() {
+uint8_t DirectionDistanceSensor::getLastDistance() {
 
 	return DistanceSensor::getLastDistance();
 }

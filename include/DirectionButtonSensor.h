@@ -8,7 +8,7 @@
 
 class   DirectionButtonSensor : public DirectionTriggerSensor, public ButtonSensor {
 public:
-  DirectionButtonSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, uint8_t sensorPin, uint8_t sensorPinMode);
+  DirectionButtonSensor(uint8_t id, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, uint8_t sensorPin, uint8_t sensorPinMode);
   void read();
   bool isTriggered();
   bool isStillTriggered();

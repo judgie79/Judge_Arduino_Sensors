@@ -1,7 +1,7 @@
 #include "ButtonSensor.h"
 
-ButtonSensor::ButtonSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, uint8_t sensorPin, uint8_t sensorPinMode)
-  : TriggerSensor(id, name, type, triggerType), _button(sensorPin, sensorPinMode) {
+ButtonSensor::ButtonSensor(uint8_t id, SensorType type, SensorTriggerType triggerType, uint8_t sensorPin, uint8_t sensorPinMode)
+  : TriggerSensor(id, type, triggerType), _button(sensorPin, sensorPinMode) {
 }
 
 void ButtonSensor::read() {

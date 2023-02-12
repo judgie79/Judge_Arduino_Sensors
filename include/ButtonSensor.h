@@ -7,7 +7,7 @@
 
 class ButtonSensor : public TriggerSensor {
 public:
-  ButtonSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, uint8_t sensorPin, uint8_t sensorPinMode);
+  ButtonSensor(uint8_t id, SensorType type, SensorTriggerType triggerType, uint8_t sensorPin, uint8_t sensorPinMode);
   void read();
   bool isTriggered();
   bool isStillTriggered();

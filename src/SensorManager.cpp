@@ -2,7 +2,7 @@
 #include "SensorManager.h"
 
 
-SensorManager::SensorManager(TriggerSensor **sensors, uint16_t sensorCount, DistanceDevice *distanceDevice) {
+SensorManager::SensorManager(TriggerSensor **sensors, uint8_t sensorCount, DistanceDevice *distanceDevice) {
   this->sensors = sensors;
   this->sensorCount = sensorCount;
   this->distanceDevice = distanceDevice;
@@ -13,7 +13,7 @@ void SensorManager::begin() {
   distanceDevice->begin();
 }
 
-uint16_t SensorManager::currentDistance()
+uint8_t SensorManager::currentDistance()
 {
   return distanceDevice->getDistance();
 }
@@ -34,7 +34,7 @@ void SensorManager::addSensor(TriggerSensor *newSensor)
 void SensorManager::removeSensor(TriggerSensor *sensorToRemove)
   {
     TriggerSensor **newArray = new TriggerSensor*[sensorCount - 1];
-    uint16_t skipCounter = 0;
+    uint8_t skipCounter = 0;
     for (size_t i = 0; i < sensorCount; i++)
     {
       if (sensors[i] != sensorToRemove)
@@ -51,7 +51,7 @@ void SensorManager::removeSensor(TriggerSensor *sensorToRemove)
   void SensorManager::removeSensors(SensorType type)
   {
     
-    uint16_t skipCounter = 0;
+    uint8_t skipCounter = 0;
     for (size_t i = 0; i < sensorCount; i++)
     {
       if (sensors[i]->getType() == type)
@@ -77,7 +77,7 @@ void SensorManager::removeSensor(TriggerSensor *sensorToRemove)
 
 void SensorManager::removeSensors(SensorTriggerType triggerType)
   {
-     uint16_t skipCounter = 0;
+     uint8_t skipCounter = 0;
     for (size_t i = 0; i < sensorCount; i++)
     {
       if (sensors[i]->getTriggerType() == triggerType)
@@ -155,7 +155,7 @@ int16_t SensorManager::lastTriggeredIndex() {
   return returnValue;
 }
 
-uint16_t SensorManager::getSensorCount()
+uint8_t SensorManager::getSensorCount()
 {
   return sensorCount;
 }
@@ -169,7 +169,7 @@ RegisteredSensors<TriggerSensor> SensorManager::getSensors() {
 
 RegisteredSensors<TriggerSensor> SensorManager::getSensors(SensorTriggerType triggerType)
 {
-  uint16_t foundSensors = 0;
+  uint8_t foundSensors = 0;
   for (size_t i = 0; i < sensorCount; i++)
   {
     TriggerSensor *sensor = sensors[i];
@@ -184,7 +184,6 @@ RegisteredSensors<TriggerSensor> SensorManager::getSensors(SensorTriggerType tri
   for (size_t i = 0; i < sensorCount; i++)
   {
     TriggerSensor *sensor = sensors[i];
-    ASSERTM(sensor != nullptr, "sensor is nullptr");
     if (sensor->getTriggerType() == triggerType)
     {
       found[foundSensors] = sensor;
@@ -197,14 +196,4 @@ RegisteredSensors<TriggerSensor> SensorManager::getSensors(SensorTriggerType tri
   rSensors.sensorCount = foundSensors;
   rSensors.sensors = found;
   return rSensors;
-}
-
-
-void SensorManager::printSensors()
-{
-  for (size_t i = 0; i < sensorCount; i++)
-  {
-    LOGD_INFO(sensors[i]->toString() );
-  }
-  
 }

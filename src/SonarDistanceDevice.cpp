@@ -12,7 +12,7 @@ void SonarDistanceDevice::begin()
   
     distance = 0;
     // init with 5 pings
-    uint16_t counter = 0;
+    uint8_t counter = 0;
     while (counter < 5)
     {
         lastDistance = distance;

@@ -9,20 +9,20 @@
 
 class DistanceSensor : public TriggerSensor {
 public:
-  DistanceSensor(uint16_t id, String name, uint16_t triggerDistance, SensorTriggerType triggerType, DistanceDevice *device);
+  DistanceSensor(uint8_t id, uint8_t triggerDistance, SensorTriggerType triggerType, DistanceDevice *device);
   ~DistanceSensor();
   void begin();
   void read();
   void setTriggerDistance(uint8_t distance);
-  uint16_t getTriggerDistance();
-  uint16_t getDistance();
-  uint16_t getLastDistance();
+  uint8_t getTriggerDistance();
+  uint8_t getDistance();
+  uint8_t getLastDistance();
   bool isTriggered();
   bool isStillTriggered();
   bool wasTriggered();
   String toString();
 private:
-  uint16_t triggerDistance;
+  uint8_t triggerDistance;
   DistanceDevice *device;
 };
 

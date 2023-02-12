@@ -1,7 +1,7 @@
 #include "DirectionButtonSensor.h"
 
-DirectionButtonSensor::DirectionButtonSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, uint8_t sensorPin, uint8_t sensorPinMode)
-  : DirectionTriggerSensor(id, name, type, triggerType, triggerDirection), ButtonSensor(id, name, type, triggerType, sensorPin, sensorPinMode) {
+DirectionButtonSensor::DirectionButtonSensor(uint8_t id, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection, uint8_t sensorPin, uint8_t sensorPinMode)
+  : DirectionTriggerSensor(id, type, triggerType, triggerDirection), ButtonSensor(id, type, triggerType, sensorPin, sensorPinMode) {
 }
 
 void DirectionButtonSensor::read() {

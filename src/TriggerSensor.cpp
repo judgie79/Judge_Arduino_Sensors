@@ -1,29 +1,24 @@
 
 #include "TriggerSensor.h"
 
-TriggerSensor::TriggerSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType) {
+TriggerSensor::TriggerSensor(uint8_t id, SensorType type, SensorTriggerType triggerType) {
   this->id = id;
-  this->name = name;
   this->type = type;
   this->triggerType = triggerType;
 }
 
 TriggerSensor::~TriggerSensor()
 {
-  LOGD_DEBUG("TriggerSensor destroyed " + String(name));
+  LOGD_DEBUG("TriggerSensor destroyed");
 }
 
-uint16_t TriggerSensor::getId() {
+uint8_t TriggerSensor::getId() {
   return id;
-}
-
-String TriggerSensor::getName() {
-  return name;
 }
 
 String TriggerSensor::toString()
 {
-	return String(id) + " - " + name;// +" - " + String(SensorTypeNames[(int)getType()]) + " - " + String(SensorTriggerTypeNames[(int)getTriggerType()]) + " - " + String(SensorTriggerDirectionNames[(int)getTriggerDirection()]) + " - " + String(TriggerdNames[isTriggered()]);
+	return String(id);
 }
 
 SensorType TriggerSensor::getType() {

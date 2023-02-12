@@ -1,7 +1,7 @@
 #include "DirectionTriggerSensor.h"
 
-DirectionTriggerSensor::DirectionTriggerSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection)
-: TriggerSensor(id, name, type, triggerType)
+DirectionTriggerSensor::DirectionTriggerSensor(uint8_t id, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection triggerDirection)
+: TriggerSensor(id, type, triggerType)
 {
     this->triggerDirection = triggerDirection;
 }

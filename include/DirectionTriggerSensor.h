@@ -9,7 +9,7 @@ class DirectionTriggerSensor : public TriggerSensor
 private:
   /* data */
 public:
-  DirectionTriggerSensor(uint16_t id, String name, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection sensorTriggerDirection);
+  DirectionTriggerSensor(uint8_t id, SensorType type, SensorTriggerType triggerType, SensorTriggerDirection sensorTriggerDirection);
   ~DirectionTriggerSensor();
   SensorTriggerDirection getTriggerDirection();
 protected:

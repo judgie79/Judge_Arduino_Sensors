@@ -10,7 +10,7 @@ template <class T>
 struct RegisteredSensors
 {
     T **sensors;
-    uint16_t sensorCount;
+    uint8_t sensorCount;
 };
 
 
