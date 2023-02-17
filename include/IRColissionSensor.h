@@ -11,14 +11,15 @@ public:
   bool isTriggered();
   bool isStillTriggered();
   bool wasTriggered();
-  long lastCollisionDuration();
+  unsigned long lastCollisionDuration();
+  void SetCollisionDuration(unsigned long t);
 private:
   uint8_t _pin;
-  byte _reading = LOW;              // the current reading from the input pin
-  byte _lastReading = LOW;          // the previous reading from the input pin
+  byte _reading = HIGH;              // the current reading from the input pin
+  byte _lastReading = HIGH;          // the previous reading from the input pin
 
-  long colissionTimer = 0;
-  long colissionDuration = 0;
+  unsigned long colissionTimer = 0;
+  unsigned long colissionDuration = 0;
 };
 
 #endif

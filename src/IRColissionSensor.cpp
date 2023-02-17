@@ -11,27 +11,38 @@ void IRColissionSensor::read() {
     _reading = digitalRead(_pin);
 
     if (isTriggered()) {
-            Serial.println("triggered");
+        Serial.println("triggered");
         colissionTimer = millis();
-        colissionDuration = 0;
+        SetCollisionDuration(0);
     } else if (wasTriggered()) {
         Serial.println("released");
-        colissionDuration = millis() - colissionTimer;
+        unsigned long t = millis() - colissionTimer;
+        SetCollisionDuration(t);
+        colissionTimer = 0;
     }
 }
 
-long IRColissionSensor::lastCollisionDuration() {
+  void IRColissionSensor::SetCollisionDuration(unsigned long t)
+  {
+    colissionDuration = t; 
+    Serial.println("IRColissionSensor::SetCollisionDuration");
+    Serial.println(colissionDuration);
+  }
+
+unsigned long IRColissionSensor::lastCollisionDuration() {
+  Serial.println("IRColissionSensor::lastCollisionDuration");
+  Serial.println(colissionDuration);
   return colissionDuration;
 }
 
 bool IRColissionSensor::isTriggered() {
-  return _reading == HIGH && _lastReading == LOW;
+  return _reading == LOW && _lastReading == HIGH;
 }
 
 bool IRColissionSensor::isStillTriggered() {
-  return _reading == HIGH && _lastReading == HIGH;
+  return _reading == LOW && _lastReading == LOW;
 }
 
 bool IRColissionSensor::wasTriggered() {
-  return _reading == LOW && _lastReading == HIGH;
+  return _reading == HIGH && _lastReading == LOW;
 }
